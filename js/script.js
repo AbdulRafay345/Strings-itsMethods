@@ -65,7 +65,7 @@ function printAllCities() {
 
 // Function to add a city to the list
 function addCity() {
-    
+
     let cityInput = document.getElementById('input').value;
     if (!cityInput) {
         alert('Please enter a city name.');
@@ -119,9 +119,9 @@ function findWord() {
     document.getElementById("output").innerHTML = "";
     let newString = originalString.toLowerCase();
     let wordIndex = newString.indexOf(findWord.toLowerCase());
-    
-    if(wordIndex !== -1){
-        document.getElementById("output").innerHTML =  'Word found at index: <span class="text-success" style="font-size:20px">"' + wordIndex + '"</span>'
+
+    if (wordIndex !== -1) {
+        document.getElementById("output").innerHTML = 'Word found at index: <span class="text-success" style="font-size:20px">"' + wordIndex + '"</span>'
     } else {
         document.getElementById("output").innerHTML = '<p class="text-danger fs-5">"Word not found"</p>';
     }
@@ -131,19 +131,19 @@ function findWord() {
 
 // Replace a word function
 function toReplaceWord() {
-    
+
     let newOriginalString = originalString.toLowerCase();
 
     let word = document.getElementById("input").value;
 
-    if(!word)  {
+    if (!word) {
         alert('Type a word you want to change from original string.');
         return;
     }
 
     let replaceWith = prompt('Enter the word you want to change it with.');
 
-    if(!replaceWith) {
+    if (!replaceWith) {
         alert('Please type a word to replace it with "' + word + "\".");
         return;
     }
@@ -155,12 +155,14 @@ function toReplaceWord() {
 
     replaceWith = replaceWith.toLowerCase();
 
-    let  replaceWord = newOriginalString.replace(word, replaceWith);
+    let replaceWord = newOriginalString.replace(word, replaceWith);
 
     document.getElementById("output").style.textTransform = 'capitalize';
     document.getElementById("output").innerHTML = replaceWord;
 
 }
+
+
 
 
 // clear input 
@@ -171,5 +173,40 @@ function clearInput() {
 
 // clear output 
 function clearOutput() {
-    document.getElementById("output").innerHTML = "";
+    let clearOutput = document.getElementById("output").innerHTML;
+
+    if (clearOutput === "") {
+        Toastify({
+            text: "Output is already cleared.",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "red",
+            },
+            onClick: function () { } // Callback after click
+        }).showToast();
+    } else {
+        document.getElementById("output").innerHTML = ""
+        Toastify({
+            text: "Output is cleared successfully.",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "green",
+            },
+            onClick: function () { } // Callback after click
+        }).showToast();
+
+    }
+
 }
